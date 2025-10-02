@@ -1,74 +1,256 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investigação Criminal Tecnológica</title>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0EXGS39F2K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investigação Criminal Tecnológica</title>
+  <meta name="description" content="Trilha de aprendizado e ferramentas tecnológicas para investigação criminal.">
+  <meta name="theme-color" content="#0f172a">
 
-  gtag('config', 'G-0EXGS39F2K');
-</script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fa;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        header {
-            background: #2c3e50;
-            color: #fff;
-            text-align: center;
-            padding: 1.5rem;
-        }
-        header h1 {
-            margin: 0;
-        }
-        nav {
-            background: #34495e;
-            padding: 0.5rem;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        section {
-            padding: 2rem;
-            max-width: 900px;
-            margin: auto;
-        }
-        section h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 0.5rem;
-        }
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-    </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0EXGS39F2K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-0EXGS39F2K');
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1220;            /* fundo profundo */
+      --panel:#0f172aee;       /* painel translúcido */
+      --card:#0b1220cc;        /* cartão translúcido */
+      --text:#e5e7eb;          /* texto principal */
+      --muted:#9ca3af;         /* texto secundário */
+      --brand:#22d3ee;         /* ciano neon */
+      --brand-2:#7c3aed;       /* roxo neon */
+      --ring: 0 0 0 1px rgba(34,211,238,.3), 0 8px 25px rgba(124,58,237,.25);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text); background:radial-gradient(1200px 600px at 10% -10%, #10203f 0%, transparent 60%),
+                          radial-gradient(900px 500px at 90% 10%, #1a0b33 0%, transparent 55%),
+                          var(--bg);
+      background-attachment: fixed;
+      line-height:1.6;
+    }
+
+    /* Header hero */
+    header{
+      position:relative; overflow:hidden;
+      padding: clamp(48px, 6vw, 96px) 24px 36px;
+      text-align:center;
+      background: linear-gradient(180deg, rgba(15,23,42,.7), rgba(15,23,42,.2));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .grid-glow{
+      position:absolute; inset:-40%;
+      background:
+        radial-gradient(600px 300px at 50% 0%, rgba(34,211,238,.18) 0%, transparent 60%),
+        radial-gradient(700px 350px at 50% 10%, rgba(124,58,237,.15) 0%, transparent 65%);
+      filter: blur(30px);
+      pointer-events:none;
+    }
+    h1{
+      margin:0 0 10px; font-weight:800; letter-spacing:.4px;
+      font-size: clamp(28px, 4.2vw, 44px);
+      background: linear-gradient(90deg, #fff, #d1d5db);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .quote{
+      max-width: 980px; margin: 0 auto 22px;
+      font-style: italic; font-size: clamp(16px, 2.2vw, 20px);
+      color:#dbeafe;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      margin-top:12px; padding:10px 16px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(34,211,238,.18), rgba(124,58,237,.18));
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
+      box-shadow: var(--ring);
+      font-weight:600; color:#cffafe;
+    }
+    .pill svg{ opacity:.9 }
+
+    /* Cards grid */
+    .wrap{max-width:1100px; margin: 18px auto 56px; padding: 0 20px;}
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(6, 1fr);
+    }
+    @media (max-width: 1100px){ .grid{ grid-template-columns: repeat(3, 1fr);} }
+    @media (max-width: 640px){ .grid{ grid-template-columns: 1fr 1fr; } }
+
+    .card{
+      grid-column: span 2;
+      position:relative; padding:22px;
+      background: linear-gradient(180deg, var(--card), #0b1220aa);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 35px rgba(0,0,0,.35);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      text-decoration:none; color:var(--text);
+      min-height: 120px; display:flex; flex-direction:column; justify-content:space-between;
+      overflow:hidden;
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      border-color: rgba(34,211,238,.45);
+      box-shadow: 0 14px 42px rgba(34,211,238,.18), 0 20px 60px rgba(124,58,237,.22);
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; color:var(--muted);
+      background: rgba(148,163,184,.08); padding:6px 10px; border-radius:999px;
+      border: 1px solid rgba(148,163,184,.18);
+    }
+    .title{
+      margin:8px 0 0; font-size: clamp(16px, 2.1vw, 20px); font-weight:700; letter-spacing:.2px;
+      line-height:1.3;
+    }
+    .corner{
+      position:absolute; right:-30px; top:-30px; width:140px; height:140px; opacity:.18;
+      background: radial-gradient(70px 70px at 70% 30%, var(--brand) 0%, transparent 70%),
+                  radial-gradient(70px 70px at 30% 70%, var(--brand-2) 0%, transparent 70%);
+      filter: blur(4px);
+    }
+    .foot{
+      margin-top:10px; font-size:12px; color:#a5b4fc;
+      opacity:.9;
+    }
+
+    /* Seções de destino (placeholders) */
+    section{ padding:56px 20px; border-top:1px solid rgba(255,255,255,.06); }
+    section .inner{ max-width:900px; margin:0 auto; }
+    section h2{ margin:0 0 8px; font-size:28px }
+    section p{ color:var(--muted); margin:0 0 12px }
+
+    footer{
+      padding:26px 18px; text-align:center; color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(15,23,42,.3), rgba(15,23,42,.6));
+    }
+
+    /* Acessibilidade ao focar */
+    .card:focus-visible{ outline: 2px solid var(--brand); outline-offset: 2px; }
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="grid-glow" aria-hidden="true"></div>
+    <h1>Investigação Criminal Tecnológica</h1>
+    <p class="quote">“Atualmente, a investigação ou é tecnológica ou não é investigação.”</p>
 
-    <header>
-        <h1>Investigação Criminal Tecnológica</h1>
-        <p>Trilha de aprendizado e ferramentas digitais</p>
-    </header>
+    <div class="pill" aria-label="Trilha de aprendizado">
+      <!-- ícone target -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 22a10 10 0 1 0-10-10" stroke="currentColor" stroke-opacity=".8" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="6.5" stroke="currentColor" stroke-opacity=".8" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+      </svg>
+      Trilha de aprendizado e ferramentas tecnológicas
+    </div>
+  </header>
 
-    <nav>
-        <a href="#websites">Websites</a>
-        <a href="#emails">E-mails</a>
-        <a href="#redes">Redes Sociais</a>
-        <a href="#outros">Outros Conteúdos</a>
+  <main class="wrap">
+    <div class="grid">
+      <!-- Websites -->
+      <a class="card" href="#websites">
+        <span class="badge">Módulo • 01</span>
+        <h3 class="title">Investigação em Websites</h3>
+        <div class="corner" aria-hidden="true"></div>
+        <span class="foot">Coleta, WHOIS, DNS, histórico e fingerprint.</span>
+      </a>
+
+      <!-- Dispositivos Eletrônicos -->
+      <a class="card" href="#dispositivos">
+        <span class="badge">Módulo • 02</span>
+        <h3 class="title">Investigação em Dispositivos Eletrônicos</h3>
+        <div class="corner" aria-hidden="true"></div>
+        <span class="foot">Aquisição, cadeia de custódia e análise.</span>
+      </a>
+
+      <!-- E-mails -->
+      <a class="card" href="#emails">
+        <span class="badge">Módulo • 03</span>
+        <h3 class="title">Investigação em E-mails</h3>
+        <div class="corner" aria-hidden="true"></div>
+        <span class="foot">Cabeçalhos, rastreio, provedores e ordens.</span>
+      </a>
+
+      <!-- OSINT -->
+      <a class="card" href="#osint">
+        <span class="badge">Módulo • 04</span>
+        <h3 class="title">OSINT</h3>
+        <div class="corner" aria-hidden="true"></div>
+        <span class="foot">Coleta aberta estruturada e pivotagem.</span>
+      </a>
+
+      <!-- Redes Sociais -->
+      <a class="card" href="#redes">
+        <span class="badge">Módulo • 05</span>
+        <h3 class="title">Investigação em Redes Sociais</h3>
+        <div class="corner" aria-hidden="true"></div>
+        <span class="foot">Perfis, preservações e extrações legais.</span>
+      </a>
+
+      <!-- OPSEC -->
+      <a class="card" href="#opsec">
+        <span class="badge">Módulo • 06</span>
+        <h3 class="title">OPSEC</h3>
+        <div class="corner" aria-hidden="true"></div>
+        <span class="foot">Higiene digital do investigador e time.</span>
+      </a>
+    </div>
+  </main>
+
+  <!-- Seções destino (placeholders para você preencher depois) -->
+  <section id="websites"><div class="inner">
+    <h2>Investigação em Websites</h2>
+    <p>Introdução, checklist e ferramentas (WHOIS, DNS, histórico, CSP, fingerprint, subdomínios...).</p>
+  </div></section>
+
+  <section id="dispositivos"><div class="inner">
+    <h2>Investigação em Dispositivos Eletrônicos</h2>
+    <p>Procedimentos, cadeia de custódia, aquisição lógica/física e análise pericial.</p>
+  </div></section>
+
+  <section id="emails"><div class="inner">
+    <h2>Investigação em E-mails</h2>
+    <p>Leitura de cabeçalhos, rastreio de origem, preservação e requisições a provedores.</p>
+  </div></section>
+
+  <section id="osint"><div class="inner">
+    <h2>OSINT</h2>
+    <p>Métodos de coleta aberta, pivotagem por artefatos e montagem de dossiês.</p>
+  </div></section>
+
+  <section id="redes"><div class="inner">
+    <h2>Investigação em Redes Sociais</h2>
+    <p>Coleta de evidências, preservação de conteúdo e fluxos legais por plataforma.</p>
+  </div></section>
+
+  <section id="opsec"><div class="inner">
+    <h2>OPSEC</h2>
+    <p>Anonimização operacional, higienização de metadados e segurança do time.</p>
+  </div></section>
+
+  <footer>
+    © <span id="y"></span> Investigação Criminal Tecnológica • Trilha de aprendizado
+  </footer>
+
+  <script>
+    // ano automático no rodapé
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
